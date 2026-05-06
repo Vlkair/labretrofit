@@ -21,7 +21,6 @@ fun DeviceItemView(device: Device){
                 style = Typography.bodySmall)
         }
     }
-
 }
 
 @Preview(showBackground = true)
