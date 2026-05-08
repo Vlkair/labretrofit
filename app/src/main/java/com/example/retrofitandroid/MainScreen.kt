@@ -17,11 +17,7 @@ fun MainView(modifier: Modifier){
             textAlign = TextAlign.Center,
             style= Typography.labelMedium
         )
-        LazyColumn()  {
-            items(devices.size){
-                DeviceItemView(devices[index])
-            }
-        }
+
     }
 
 }

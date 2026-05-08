@@ -1,9 +1,12 @@
 package com.example.retrofitandroid
 
+import android.hardware.camera2.DngCreator
+
 data class Device(
     val id: Long,
     val name: String,
-    val data: Specs?
+    val data: Specs?,
+    val createAt: String?
 )
 //kotlin es nullsafety errores en tiempo de compilacion por los valores nulos por lo que pondremos "?" al final de Specs
 //
