@@ -6,13 +6,14 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.retrofitandroid.ui.theme.RetrofitAndroidTheme
 import com.example.retrofitandroid.ui.theme.Typography
 
 @Composable
 fun DeviceItemView(device: Device){
-    Row{
+    Row(verticalAlignment = Alignment.CenterVertically){
         Icon(imageVector = Icons.Default.Phone,
             contentDescription = null)
         Column{

@@ -17,9 +17,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
 import com.example.retrofitandroid.ui.theme.RetrofitAndroidTheme
 import com.example.retrofitandroid.ui.theme.Typography
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -38,38 +41,41 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainView(modifier = Modifier.padding(innerPadding),
-                    devices)
+                    devices= devices)
                 }
             }
         }
     }
-}
-
-private fun getDevices(onResult:(List<Device>)-> Unit){
-    val retrofit = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    val service = retrofit.create(DeviceService::class.java)
-    lifecycleScope.launch{
-        val devices = service.getAllDevices()
-        onResult(devices)
-    }
-}
-//si llega la ia con binding no vale rehacer
-@Composable
-fun MainView(modifier: Modifier,devices:List<Device>){
-    Text(text="Dispositivos",
-        modifier = Modifier.fillMaxWidth(),
-        style= Typography.labelMedium,
-        textAlign = TextAlign.Center
-    )
-    LazyColumn() {
-        items(devices.size) { index ->
-            DeviceItemView(device = devices[index])
+    private fun getDevices(onResult:(List<Device>)-> Unit){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(DeviceService::class.java)
+        lifecycleScope.launch{
+            val result = service.getAllDevices()
+            onResult(result)
         }
     }
 }
+//agregar navigation compose, primero ir por la creacion plantemiento y formulario
+//navhost y el nuevo formulario, crear la misma estructura, el body el enlace encapsula el objeto y lo envias...
+
+//si llega la ia con binding no vale rehacer
+//@Composable
+//fun MainView(modifier: Modifier,devices:List<Devices>){
+//    Text(
+//        text="Dispositivos",
+//        modifier = Modifier.fillMaxWidth(),
+//        style= Typography.labelMedium,
+//        textAlign = TextAlign.Center
+//    )
+//    LazyColumn() {
+//        items(devices.size) { index ->
+//            DeviceItemView(device = devices[index])
+//        }
+//    }
+//}
 //@Composable
 //fun Greeting(name: String, modifier: Modifier = Modifier) {
 //    Text(

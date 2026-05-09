@@ -6,10 +6,6 @@
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="GreetingPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DialogSelection />
-      </SelectionState>
       <SelectionState runConfigName="MainViewPreview">
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
